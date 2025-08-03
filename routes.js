@@ -1,6 +1,5 @@
 const express = require('express');
 const router = express.Router();
-const path = require('path');
 const mongoclient = require('./db');
 
 // Gets adds a book to the history database
