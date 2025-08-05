@@ -7,7 +7,13 @@ Clone repository
 
 Run "npm install" to install required packages
 
-Configure a .env file in the root with DB_CONNECTION_URI=MongoDB_URI and PORT=desired_run_port
+Configure a .env file in the root with 
+```
+DB_CONNECTION_URI=mongo_db_uri
+PORT=desired_run_port
+DB_NAME=mongo_database_name
+DB_COLLECTION=mongo_collection_name
+```
 
 Then run "npm run start" to start the microservice at the desired port.
 
