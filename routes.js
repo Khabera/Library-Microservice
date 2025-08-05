@@ -15,8 +15,8 @@ router.post('/history', async (req, res) => {
       read_date = new Date(read_date)
     }
     await mongoclient.connect();
-    const myDB = mongoclient.db("LibraryMicroservice");
-    const result = await myDB.collection("ReadingLists").insertOne({
+    const myDB = mongoclient.db(process.env.DB_NAME);
+    const result = await myDB.collection(process.env.DB_COLLECTION).insertOne({
       username: username,
       book: book,
       read_date: read_date
@@ -37,8 +37,8 @@ router.delete('/history/:id', async (req, res) => {
   try {
     let entry_id = req.params.id
     await mongoclient.connect();
-    const myDB = mongoclient.db("LibraryMicroservice");
-    const result = await myDB.collection("ReadingLists").deleteOne({
+    const myDB = mongoclient.db(process.env.DB_NAME);
+    const result = await myDB.collection(process.env.DB_COLLECTION).deleteOne({
       _id: new ObjectId(entry_id)
     })
     if (result.deletedCount > 0){
@@ -61,8 +61,8 @@ router.delete('/history/:username/:bookid', async (req, res) => {
     const book_id = req.params.bookid;
     const username = req.params.username;
     await mongoclient.connect();
-    const myDB = mongoclient.db("LibraryMicroservice");
-    const result = await myDB.collection("ReadingLists").deleteOne({
+    const myDB = mongoclient.db(process.env.DB_NAME);
+    const result = await myDB.collection(process.env.DB_COLLECTION).deleteOne({
       'username': username,
       'book.id': book_id
     })
@@ -85,8 +85,8 @@ router.get('/history/user/:username/alltime', async (req, res) => {
   try {
     const username = req.params.username
     await mongoclient.connect();
-    const myDB = mongoclient.db("LibraryMicroservice");
-    const result = await myDB.collection("ReadingLists").find({
+    const myDB = mongoclient.db(process.env.DB_NAME);
+    const result = await myDB.collection(process.env.DB_COLLECTION).find({
       username: username
     }).toArray()
     console.log(
@@ -109,8 +109,8 @@ router.get('/history/user/:username/previousdays/:days', async (req, res) => {
     let date = new Date()
     date = new Date(date.setTime(date.getTime() - (days*24*3600000)))
     await mongoclient.connect();
-    const myDB = mongoclient.db("LibraryMicroservice");
-    const result = await myDB.collection("ReadingLists").find({
+    const myDB = mongoclient.db(process.env.DB_NAME);
+    const result = await myDB.collection(process.env.DB_COLLECTION).find({
       username: username,
       read_date: {$gt: date}
     }).toArray()
