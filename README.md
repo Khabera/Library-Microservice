@@ -39,7 +39,7 @@ username (string) - The username who you want the book to be added to history fo
 
 book (object) - The book you want added
 
-read_date (Date formatted string) (OPTIONAL) - The date to mark book as read. Defaults to the current date.
+read_date (Date) (OPTIONAL) - The date to mark book as read. Defaults to the current date.
 
 # Deleting a book from a user's list by query parameters
 
@@ -74,7 +74,7 @@ book (object): {
   genre (string),
   isbn (string)
   },
-read_date (string)
+read_date (Date)
 }, ]
 
 # Get history for given amount of days

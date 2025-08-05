@@ -7,18 +7,18 @@ const mongoclient = require('./db');
 router.post('/history', async (req, res) => {
   try {
     let {username, book, read_date} = req.body;
-    todays_date = (new Date()).toLocaleString()
+    todays_date = new Date()
     if(read_date == null){
-      read_date = (new Date()).toLocaleString()
-    }else if(new Date(read_date) > todays_date){
-      throw "Date should not be in the future";
+      read_date = new Date()
+    }else{
+      read_date = new Date(read_date)
     }
     await mongoclient.connect();
     const myDB = mongoclient.db("LibraryMicroservice");
     const result = await myDB.collection("ReadingLists").insertOne({
       username: username,
       book: book,
-      read_date
+      read_date: read_date
     })
     console.log(
       `Posted ${book} for ${username}`,
