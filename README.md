@@ -14,20 +14,15 @@ Then run "npm run start" to start the microservice at the desired port.
 
 # Book Object
 Many requests/response include a book object, which is in the following format
-
+```
 book: {
-
 title: string,
-
 id: string,
-
 author: string,
-
 genre: string,
-
 isbn: string,
-
 }
+```
 
 # Adding a book to a user's list
 
@@ -65,7 +60,8 @@ username (string) - The username you want to add the book for
 
 Return:
 Array of book entries in the following format:
-\[{_id (string): entry id,
+```
+[{_id (string): entry id,
 username (string),
 book (object): {
   title (string),
@@ -76,6 +72,7 @@ book (object): {
   },
 read_date (Date)
 }, ]
+```
 
 # Get history for given amount of days
 
@@ -115,4 +112,6 @@ result:
 ```
 [{'_id': '689171500b6085fa4717663e', 'username': 'alex', 'book': {'id': '6fd', 'title': 'Republic', 'author': 'Plato', 'genre': 'Philosophy', 'isbn': '9780141442433'}, 'read_date': '8/4/2025, 7:49:52 PM'}]
 ```
+# UML
+<img width="1277" height="1553" alt="image" src="https://github.com/user-attachments/assets/cf5ed3e5-eaa8-4d75-984b-7c23068f9d52" />
 
