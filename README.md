@@ -4,18 +4,29 @@ Microservice to provide user read history and retrieval.
 
 # Set up
 Clone repository
+
 Run "npm install" to install required packages
+
 Configure a .env file in the root with DB_CONNECTION_URI=MongoDB_URI and PORT=desired_run_port
+
 Then run "npm run start" to start the microservice at the desired port.
+
 
 # Book Object
 Many requests/response include a book object, which is in the following format
+
 book: {
+
 title: string,
+
 id: string,
+
 author: string,
+
 genre: string,
+
 isbn: string,
+
 }
 
 # Adding a book to a user's list
