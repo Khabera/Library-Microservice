@@ -66,10 +66,14 @@ router.delete('/history/:username/:bookid', async (req, res) => {
       'username': username,
       'book.id': book_id
     })
-    console.log(
-      `Deleted ${book_id}`,
-    );
-    res.status(200).send("Successfully delete Book");
+    if (result.deletedCount > 0){
+      console.log(
+        `Deleted entry id: ${book_id}`,
+      );
+      res.status(200).send("Successfully deleted entry ID.");
+    }else{
+      res.status(404).send('Record matching that ID not found.');
+    }
   } catch (err) {
     console.error('RESET ERROR:', err);
     res.status(500).send('Error.');
@@ -113,7 +117,7 @@ router.get('/history/user/:username/previousdays/:days', async (req, res) => {
     console.log(
       `Successfully retrieved results`,
     );
-    console.log(result)
+    console.log(`Returned ${result.length} results for ${username}`)
     res.status(200).json(result);
   } catch (err) {
     console.error('RESET ERROR:', err);

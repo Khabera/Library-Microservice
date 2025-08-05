@@ -37,8 +37,9 @@ books = [
 ]
 
 for book in books:
+    print(f'Sent book to server.')
     requests.post('http://localhost:54837/history', json=book)
 
-print(
-    requests.get('http://localhost:54837/history/user/alex/alltime').json()
-)
+result = requests.get('http://localhost:54837/history/user/alex/alltime').json()
+for result_item in result:
+    print(result_item)
