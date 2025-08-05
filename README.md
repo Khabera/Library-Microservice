@@ -21,7 +21,8 @@ id: string,
 author: string,
 genre: string,
 isbn: string,
-}```
+}
+```
 
 # Adding a book to a user's list
 
@@ -59,7 +60,8 @@ username (string) - The username you want to add the book for
 
 Return:
 Array of book entries in the following format:
-```[{_id (string): entry id,
+```
+[{_id (string): entry id,
 username (string),
 book (object): {
   title (string),
@@ -69,7 +71,8 @@ book (object): {
   isbn (string)
   },
 read_date (Date)
-}, ]```
+}, ]
+```
 
 # Get history for given amount of days
 
