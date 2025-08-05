@@ -62,9 +62,13 @@ read_date (string)
 # Get history for given amount of days
 
 GET /history/user/:username/previousdays/:days
+
 Input Parameters (passed in path):
 username (string): username
 days (string): number of previous days to get history for (e.g. 90 for past 3 months).
+
+Return:
+Same as above.
 
 # Example Usage:
 
@@ -94,5 +98,3 @@ result:
 [{'_id': '689171500b6085fa4717663e', 'username': 'alex', 'book': {'id': '6fd', 'title': 'Republic', 'author': 'Plato', 'genre': 'Philosophy', 'isbn': '9780141442433'}, 'read_date': '8/4/2025, 7:49:52 PM'}]
 ```
 
-Return:
-Same as above.
