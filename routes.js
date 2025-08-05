@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const mongoclient = require('./db');
+const { ObjectId } = require('mongodb');
 
 // Gets adds a book to the history database
 // Provide a specific read date, or default to none for today's date
@@ -21,11 +22,11 @@ router.post('/history', async (req, res) => {
       read_date: read_date
     })
     console.log(
-      `Posted ${book} for ${username}`,
+      `Added ${book.title} for ${username}`,
     );
     res.status(200).send("Successfully added Book");
   } catch (err) {
-    console.error('RESET ERROR:', err);
+    console.error('ERROR:', err);
     res.status(500).send('Error.');
   }
 });
@@ -38,12 +39,16 @@ router.delete('/history/:id', async (req, res) => {
     await mongoclient.connect();
     const myDB = mongoclient.db("LibraryMicroservice");
     const result = await myDB.collection("ReadingLists").deleteOne({
-      id: {entry_id}
+      _id: new ObjectId(entry_id)
     })
-    console.log(
-      `Deleted ${book_id}`,
-    );
-    res.status(200).send("Successfully delete Book");
+    if (result.deletedCount > 0){
+      console.log(
+        `Deleted entry id: ${entry_id}`,
+      );
+      res.status(200).send("Successfully deleted entry ID.");
+    }else{
+      res.status(404).send('Record matching that ID not found.');
+    }
   } catch (err) {
     console.error('RESET ERROR:', err);
     res.status(500).send('Error.');
@@ -83,7 +88,7 @@ router.get('/history/user/:username/alltime', async (req, res) => {
     console.log(
       `Successfully retrieved results for username`,
     );
-    console.log(result)
+    console.log(`Returned ${result.length} results for ${username}`)
     res.status(200).json(result);
   } catch (err) {
     console.error('RESET ERROR:', err);
