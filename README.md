@@ -11,26 +11,33 @@ Then run "npm run start" to start the microservice at the desired port.
 # Book Object
 Many requests/response include a book object, which is in the following format
 book: {
-title: string
-id: string
-author: string
-genre: string
-isbn: string
+title: string,
+id: string,
+author: string,
+genre: string,
+isbn: string,
 }
 
 # Adding a book to a user's list
 
 POST /history
+
 Input Parameters: 
+
 username (string) - The username who you want the book to be added to history for
+
 book (object) - The book you want added
+
 read_date (Date formatted string) (OPTIONAL) - The date to mark book as read. Defaults to the current date.
 
 # Deleting a book from a user's list by query parameters
 
 DELETE history/:username/:bookid
+
 Input Parameters (passed in path)
+
 username (string) - The username who owns the book
+
 id (string) - The ID of the book object
 
 # Deleting a book by history entry id
