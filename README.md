@@ -66,5 +66,33 @@ Input Parameters (passed in path):
 username (string): username
 days (string): number of previous days to get history for (e.g. 90 for past 3 months).
 
+# Example Usage:
+
+```
+import requests
+
+requests.post(
+    'http://localhost:54837/history',
+    json={
+        'username': 'alex',
+        'book': {
+            'id': '6fd',
+            'title': 'Republic',
+            'author': 'Plato',
+            'genre': 'Philosophy',
+            'isbn': '9780141442433'
+        }
+    })
+
+print(
+    requests.get('http://localhost:54837/history/user/alex/alltime').json()
+)
+```
+
+result:
+```
+[{'_id': '689171500b6085fa4717663e', 'username': 'alex', 'book': {'id': '6fd', 'title': 'Republic', 'author': 'Plato', 'genre': 'Philosophy', 'isbn': '9780141442433'}, 'read_date': '8/4/2025, 7:49:52 PM'}]
+```
+
 Return:
 Same as above.
